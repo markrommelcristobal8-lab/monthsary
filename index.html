@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#120306" />
+  <title>Our First Monthsary 🌹</title>
+  <style>
+    :root{
+      --bg:#0d0204;
+      --panel:#170509;
+      --panel2:#23070d;
+      --red:#c60024;
+      --rose:#ff3158;
+      --rose-soft:#ff8da3;
+      --cream:#fff5f7;
+      --muted:#d6b5bd;
+      --line:rgba(255,255,255,.10);
+      --glass:rgba(255,255,255,.065);
+      --shadow:0 30px 80px rgba(0,0,0,.45);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:#3b2118;
+      font-family:Georgia,"Times New Roman",serif;
+      background:
+        radial-gradient(circle at 25% 15%,rgba(255,255,255,.35),transparent 24%),
+        repeating-linear-gradient(0deg,rgba(93,58,30,.025) 0 1px,transparent 1px 4px),
+        linear-gradient(135deg,#ead3a2,#f6e6bd 48%,#dec18a);
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:10px;
+      pointer-events:none;
+      z-index:60;
+      border:2px solid rgba(93,46,25,.42);
+      border-radius:10px;
+      box-shadow:
+        inset 0 0 0 5px rgba(117,67,34,.08),
+        inset 0 0 35px rgba(91,44,22,.12);
+    }
+
+    .ambient{
+      position:fixed;
+      width:320px;height:320px;
+      border-radius:50%;
+      filter:blur(70px);
+      opacity:.15;
+      pointer-events:none;
+      z-index:-1;
+    }
+    .a1{background:#ff1744;left:-100px;top:140px}
+    .a2{background:#8b0018;right:-90px;top:560px}
+
+    .wrap{width:min(1180px,92%);margin:auto}
+
+    .nav{
+      position:sticky;
+      top:14px;
+      z-index:40;
+      margin-top:14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:12px 14px 12px 16px;
+      border:1px solid rgba(255,255,255,.09);
+      background:rgba(16,3,6,.70);
+      backdrop-filter:blur(18px);
+      border-radius:20px;
+      box-shadow:0 16px 45px rgba(0,0,0,.22);
+    }
+
+    .brand{
+      display:flex;align-items:center;gap:11px;
+      font-weight:800;letter-spacing:.2px;
+    }
+    .brand-mark{
+      width:42px;height:42px;border-radius:14px;
+      display:grid;place-items:center;
+      background:linear-gradient(145deg,#8d001a,#ec2448);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 9px 28px rgba(196,0,36,.28);
+      font-size:20px;
+    }
+
+    .nav-actions{display:flex;gap:6px;flex-wrap:wrap}
+    .nav-actions button{
+      border:0;background:transparent;color:#e8cfd5;
+      padding:10px 12px;border-radius:12px;cursor:pointer;font-weight:700;
+    }
+    .nav-actions button:hover{background:rgba(255,255,255,.07);color:white}
+
+    section{padding:78px 0}
+    .hero{
+      padding-top:72px;
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:48px;
+      align-items:center;
+      min-height:680px;
+    }
+
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 12px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.1);
+      background:rgba(255,255,255,.045);
+      color:#ffdce4;font-size:13px;font-weight:800;letter-spacing:.2px;
+    }
+
+    h1{
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:clamp(50px,7.5vw,94px);
+      line-height:.94;
+      letter-spacing:-3px;
+      margin:19px 0 22px;
+      max-width:760px;
+    }
+    h1 .accent{
+      display:block;
+      background:linear-gradient(90deg,#ff3158,#ff95aa 55%,#fff2f5);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+
+    .lead{
+      max-width:690px;
+      color:#d7bbc2;
+      font-size:18px;
+      line-height:1.8;
+      margin:0;
+    }
+
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .btn{
+      border:0;border-radius:15px;min-height:48px;
+      padding:0 19px;font-weight:850;font-size:15px;
+      cursor:pointer;transition:.25s;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{
+      color:white;
+      background:linear-gradient(135deg,#b90021,#ff3158);
+      box-shadow:0 14px 32px rgba(205,0,42,.26);
+    }
+    .btn-light{background:#fff;color:#5a0816}
+
+    .hero-visual{
+      position:relative;
+      min-height:500px;
+      border-radius:34px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.11);
+      box-shadow:var(--shadow);
+      background:
+        radial-gradient(circle at 50% 30%,rgba(255,93,120,.22),transparent 24%),
+        linear-gradient(145deg,#3a0913,#160408 58%,#0e0204);
+    }
+    .hero-visual::after{
+      content:"";
+      position:absolute;inset:0;
+      background:linear-gradient(to top,rgba(6,0,2,.76),transparent 56%);
+    }
+    .rose-art{
+      position:absolute;inset:0;
+      display:grid;place-items:center;
+      font-size:200px;
+      filter:drop-shadow(0 18px 35px rgba(0,0,0,.35));
+      animation:roseFloat 4s ease-in-out infinite;
+    }
+    @keyframes roseFloat{50%{transform:translateY(-12px) rotate(-3deg)}}
+
+    .hero-caption{
+      position:absolute;left:26px;right:26px;bottom:25px;z-index:2;
+      display:flex;align-items:flex-end;justify-content:space-between;gap:15px;
+    }
+    .hero-caption strong{
+      display:block;font-family:Georgia,serif;font-size:30px;margin-bottom:5px;
+    }
+    .hero-caption span{color:#e9cdd4}
+    .month-chip{
+      flex:0 0 auto;padding:11px 14px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.08);
+      backdrop-filter:blur(12px);
+      font-weight:800;color:#fff0f4;
+    }
+
+    .section-head{text-align:center;max-width:720px;margin:0 auto 36px}
+    .section-head small{
+      display:block;text-transform:uppercase;letter-spacing:2px;
+      color:#ff6f8d;font-weight:900;font-size:12px;
+    }
+    .section-head h2{
+      font-family:Georgia,serif;font-size:clamp(36px,5vw,56px);
+      margin:9px 0 12px;
+    }
+    .section-head p{color:#cdb1b8;line-height:1.75;margin:0}
+
+    .dashboard{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+    }
+    .dash-card{
+      border:1px solid rgba(255,255,255,.095);
+      background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.028));
+      border-radius:26px;
+      padding:26px;
+      min-height:245px;
+      cursor:pointer;
+      transition:.28s;
+      position:relative;
+      overflow:hidden;
+    }
+    .dash-card:hover{
+      transform:translateY(-7px);
+      border-color:rgba(255,73,108,.36);
+      background:linear-gradient(160deg,rgba(255,255,255,.095),rgba(255,255,255,.035));
+    }
+    .dash-card::after{
+      content:"";position:absolute;width:140px;height:140px;border-radius:50%;
+      right:-55px;bottom:-55px;background:radial-gradient(circle,#c60024,transparent 68%);
+      opacity:.18;
+    }
+    .iconbox{
+      width:56px;height:56px;border-radius:17px;display:grid;place-items:center;
+      background:linear-gradient(145deg,#710014,#d40d32);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.15);
+      font-size:26px;
+    }
+    .dash-card h3{font-family:Georgia,serif;font-size:29px;margin:20px 0 9px}
+    .dash-card p{color:#ceb2b9;line-height:1.7;margin-bottom:21px}
+    .dash-card .linkish{color:#ff6c89;font-weight:850}
+
+    /* realistic gallery */
+    .gallery-shell{
+      position:relative;
+      border-radius:34px;
+      min-height:620px;
+      border:1px solid rgba(255,255,255,.09);
+      background:
+        radial-gradient(circle at center,rgba(190,0,35,.14),transparent 31%),
+        linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.014));
+      overflow:hidden;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.03);
+    }
+    .gallery-shell::before{
+      content:"";
+      position:absolute;left:50%;bottom:72px;transform:translateX(-50%);
+      width:430px;height:52px;border-radius:50%;
+      background:rgba(0,0,0,.42);filter:blur(18px);
+    }
+
+    .carousel3d{
+      position:absolute;
+      left:50%;top:47%;
+      width:260px;height:340px;
+      transform-style:preserve-3d;
+      transform:translate(-50%,-50%);
+      animation:orbit 22s linear infinite;
+    }
+    .gallery-shell.paused .carousel3d{animation-play-state:paused}
+    @keyframes orbit{
+      from{transform:translate(-50%,-50%) rotateY(0deg)}
+      to{transform:translate(-50%,-50%) rotateY(360deg)}
+    }
+
+    .photo-card{
+      position:absolute;
+      inset:0;
+      border:0;padding:0;
+      border-radius:22px;
+      overflow:hidden;
+      cursor:pointer;
+      color:white;
+      background:#4b0a16;
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:0 24px 55px rgba(0,0,0,.42);
+      transform-style:preserve-3d;
+      backface-visibility:hidden;
+    }
+    .photo-card:nth-child(1){transform:rotateY(0deg) translateZ(410px)}
+    .photo-card:nth-child(2){transform:rotateY(60deg) translateZ(410px)}
+    .photo-card:nth-child(3){transform:rotateY(120deg) translateZ(410px)}
+    .photo-card:nth-child(4){transform:rotateY(180deg) translateZ(410px)}
+    .photo-card:nth-child(5){transform:rotateY(240deg) translateZ(410px)}
+    .photo-card:nth-child(6){transform:rotateY(300deg) translateZ(410px)}
+
+    .photo-placeholder{
+      width:100%;height:100%;position:relative;
+      display:flex;align-items:flex-end;
+      background:
+        linear-gradient(to top,rgba(20,0,6,.88),transparent 58%),
+        radial-gradient(circle at 54% 24%,rgba(255,255,255,.20),transparent 14%),
+        linear-gradient(145deg,#8b0019,#e0163d 52%,#51000e);
+    }
+    .photo-card:nth-child(2) .photo-placeholder,
+    .photo-card:nth-child(5) .photo-placeholder{
+      background:
+        linear-gradient(to top,rgba(20,0,6,.88),transparent 58%),
+        radial-gradient(circle at 32% 20%,rgba(255,255,255,.18),transparent 14%),
+        linear-gradient(145deg,#46000d,#af0829,#7a0017);
+    }
+    .photo-card:nth-child(3) .photo-placeholder,
+    .photo-card:nth-child(6) .photo-placeholder{
+      background:
+        linear-gradient(to top,rgba(20,0,6,.88),transparent 58%),
+        radial-gradient(circle at 70% 18%,rgba(255,255,255,.18),transparent 12%),
+        linear-gradient(145deg,#5d0011,#d40f33,#350009);
+    }
+    .photo-center{
+      position:absolute;inset:0;display:grid;place-items:center;
+      font-size:76px;opacity:.95;
+      text-shadow:0 12px 24px rgba(0,0,0,.22);
+    }
+    .photo-info{
+      position:relative;z-index:2;text-align:left;padding:19px;width:100%;
+    }
+    .photo-info strong{font-size:18px;display:block}
+    .photo-info span{font-size:12px;color:#f7d8df;margin-top:5px;display:block}
+
+    .gallery-caption{
+      position:absolute;bottom:19px;left:20px;right:20px;
+      text-align:center;color:#caaab2;font-size:13px;
+    }
+
+    .message-panel{
+      max-width:850px;margin:auto;
+      border-radius:30px;
+      padding:38px;
+      border:1px solid rgba(255,255,255,.09);
+      background:
+        linear-gradient(150deg,rgba(255,255,255,.07),rgba(255,255,255,.025));
+      box-shadow:0 24px 55px rgba(0,0,0,.16);
+    }
+    .message-panel .quote{
+      font-family:Georgia,serif;
+      font-size:30px;line-height:1.45;margin:0 0 18px;
+    }
+    .message-panel p{color:#d8bcc3;line-height:1.9}
+
+    .surprise-box{
+      max-width:780px;margin:auto;text-align:center;
+      padding:46px 28px;border-radius:32px;
+      border:1px solid rgba(255,255,255,.09);
+      background:
+        radial-gradient(circle at 50% 0%,rgba(221,0,43,.18),transparent 35%),
+        rgba(255,255,255,.035);
+    }
+    .surprise-rose{font-size:96px;filter:drop-shadow(0 12px 30px rgba(0,0,0,.35))}
+    #finalText{display:none;max-width:570px;margin:23px auto 0;color:#dfc3ca;line-height:1.8}
+    #finalText.show{display:block;animation:fadeUp .5s ease}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+    /* modal */
+    .modal{
+      position:fixed;inset:0;z-index:100;
+      display:none;align-items:center;justify-content:center;
+      padding:20px;background:rgba(4,0,1,.82);
+      backdrop-filter:blur(10px);
+    }
+    .modal.show{display:flex}
+    .modal-card{
+      width:min(580px,100%);
+      border-radius:30px;padding:32px 30px 30px;
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(circle at 50% -10%,rgba(224,12,52,.18),transparent 40%),
+        linear-gradient(160deg,#25070d,#120306);
+      box-shadow:0 40px 90px rgba(0,0,0,.52);
+      text-align:center;
+      position:relative;
+      animation:modalIn .35s ease;
+    }
+    @keyframes modalIn{from{opacity:0;transform:scale(.94) translateY(8px)}to{opacity:1;transform:none}}
+    .close{
+      position:absolute;right:14px;top:14px;width:42px;height:42px;
+      border-radius:50%;border:0;background:rgba(255,255,255,.08);
+      color:white;font-size:22px;cursor:pointer;
+    }
+    .modal-rose{font-size:72px}
+    .modal-card h3{font-family:Georgia,serif;font-size:31px;margin:10px 0 12px}
+    .modal-card p{margin:0;color:#e2c6cd;line-height:1.82}
+
+    .spark{
+      position:fixed;z-index:180;pointer-events:none;
+      width:5px;height:5px;border-radius:50%;
+      animation:burst 920ms cubic-bezier(.16,.84,.35,1) forwards;
+    }
+    @keyframes burst{
+      from{transform:translate(0,0) scale(1);opacity:1}
+      to{transform:translate(var(--x),var(--y)) scale(.2);opacity:0}
+    }
+
+    .petal{
+      position:fixed;
+      top:-30px;
+      z-index:5;
+      pointer-events:none;
+      color:#d90e38;
+      font-size:18px;
+      opacity:.35;
+      animation:fall linear forwards;
+    }
+    @keyframes fall{
+      to{transform:translateY(110vh) rotate(360deg);opacity:.05}
+    }
+
+    footer{padding:35px 0 45px;text-align:center;color:#8e7279;font-size:13px}
+
+    @media(max-width:860px){
+      .hero{grid-template-columns:1fr;min-height:auto;padding-top:48px}
+      .hero-visual{min-height:390px}
+      .dashboard{grid-template-columns:1fr}
+      .nav-actions{display:none}
+      .gallery-shell{min-height:530px}
+      .carousel3d{transform:translate(-50%,-50%) scale(.74);animation-name:orbitMobile}
+      @keyframes orbitMobile{
+        from{transform:translate(-50%,-50%) scale(.74) rotateY(0deg)}
+        to{transform:translate(-50%,-50%) scale(.74) rotateY(360deg)}
+      }
+      .photo-card:nth-child(1){transform:rotateY(0deg) translateZ(330px)}
+      .photo-card:nth-child(2){transform:rotateY(60deg) translateZ(330px)}
+      .photo-card:nth-child(3){transform:rotateY(120deg) translateZ(330px)}
+      .photo-card:nth-child(4){transform:rotateY(180deg) translateZ(330px)}
+      .photo-card:nth-child(5){transform:rotateY(240deg) translateZ(330px)}
+      .photo-card:nth-child(6){transform:rotateY(300deg) translateZ(330px)}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      .carousel3d,.rose-art,.petal{animation:none!important}
+    }
+  
+    .page-view{display:none}
+    .page-view.active{display:block;animation:viewIn .38s ease}
+    @keyframes viewIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+    .home-view.active{display:block}
+    .subpage{
+      min-height:640px;
+      padding-top:56px;
+      padding-bottom:80px;
+    }
+    .subpage-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:30px;
+    }
+    .back-btn{
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      color:white;
+      min-height:44px;
+      padding:0 15px;
+      border-radius:13px;
+      cursor:pointer;
+      font-weight:800;
+    }
+    .back-btn:hover{background:rgba(255,255,255,.10)}
+
+  
+    /* ORIGINAL VINTAGE ROSE THEME */
+    .ambient{display:none}
+    .wrap{width:min(1160px,90%)}
+
+    .nav{
+      background:rgba(239,218,172,.88);
+      border:1px solid rgba(91,48,26,.25);
+      box-shadow:0 10px 30px rgba(78,41,20,.12);
+      color:#49271c;
+    }
+    .brand-mark{
+      background:linear-gradient(145deg,#52000d,#a3001d);
+      box-shadow:0 7px 18px rgba(91,0,16,.22);
+    }
+    .nav-actions button{color:#5b3528}
+    .nav-actions button:hover{background:rgba(90,45,25,.08);color:#2d170f}
+
+    .hero{position:relative}
+    .hero::before,.hero::after{
+      content:"";
+      position:absolute;
+      width:120px;height:120px;
+      opacity:.42;
+      pointer-events:none;
+      background:
+        radial-gradient(ellipse at 50% 65%,#4d0010 0 12%,transparent 13%),
+        radial-gradient(ellipse at 38% 48%,#7f0019 0 17%,transparent 18%),
+        radial-gradient(ellipse at 62% 48%,#a50022 0 17%,transparent 18%),
+        radial-gradient(ellipse at 50% 35%,#650013 0 18%,transparent 19%);
+      filter:drop-shadow(0 8px 8px rgba(65,22,12,.15));
+    }
+    .hero::before{left:-38px;top:42px;transform:rotate(-18deg)}
+    .hero::after{right:-34px;bottom:32px;transform:rotate(165deg)}
+
+    .eyebrow{
+      color:#6b3427;
+      border-color:rgba(91,48,26,.24);
+      background:rgba(255,249,225,.35);
+    }
+    h1{color:#3b2017}
+    h1 .accent{
+      background:linear-gradient(90deg,#6d0013,#b00025,#6d0013);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .lead{color:#6b4a3d}
+
+    .btn-primary{
+      background:linear-gradient(135deg,#6b0012,#aa001f);
+      box-shadow:0 12px 25px rgba(91,0,15,.18);
+    }
+    .btn-light{
+      background:#f8eac6;color:#5a2e20;
+      border:1px solid rgba(93,49,26,.22);
+    }
+
+    .hero-visual{
+      min-height:500px;
+      background:#2d120d;
+      border:1px solid rgba(91,48,26,.26);
+      box-shadow:0 25px 55px rgba(75,39,18,.18);
+    }
+    .hero-visual::after{
+      background:linear-gradient(to top,rgba(54,24,15,.72),transparent 54%);
+    }
+    .rose-art{display:none}
+    .hero-caption strong,.hero-caption span{color:#fff9e9}
+    .month-chip{
+      background:rgba(64,27,18,.54);
+      border-color:rgba(255,255,255,.22);
+      color:#fff5dc;
+    }
+
+    .section-head small{color:#8d001a}
+    .section-head h2{color:#442419}
+    .section-head p{color:#755245}
+
+    .dash-card{
+      background:
+        linear-gradient(145deg,rgba(255,249,225,.60),rgba(224,193,137,.30));
+      border:1px solid rgba(91,48,26,.24);
+      box-shadow:0 14px 30px rgba(83,46,25,.08);
+    }
+    .dash-card:hover{
+      border-color:rgba(112,0,20,.38);
+      background:linear-gradient(145deg,rgba(255,250,230,.78),rgba(224,193,137,.40));
+    }
+    .dash-card::after{background:radial-gradient(circle,#760016,transparent 68%);opacity:.08}
+    .iconbox{background:linear-gradient(145deg,#580010,#a30020)}
+    .dash-card h3{color:#47251a}
+    .dash-card p{color:#765246}
+    .dash-card .linkish{color:#870018}
+
+    .gallery-shell{
+      border-color:rgba(91,48,26,.24);
+      background:
+        radial-gradient(circle at center,rgba(124,0,22,.08),transparent 31%),
+        repeating-linear-gradient(0deg,rgba(93,58,30,.02) 0 1px,transparent 1px 4px),
+        rgba(246,230,190,.55);
+    }
+    .gallery-caption{color:#714b3e}
+    .photo-card{border-color:rgba(78,37,21,.32)}
+    .photo-placeholder{
+      background:
+        linear-gradient(to top,rgba(48,17,12,.80),transparent 58%),
+        linear-gradient(145deg,#6f0014,#a60022 50%,#3e000a);
+    }
+
+    .message-panel,.surprise-box{
+      color:#48281d;
+      border:1px solid rgba(91,48,26,.24);
+      background:
+        repeating-linear-gradient(0deg,rgba(93,58,30,.02) 0 1px,transparent 1px 4px),
+        rgba(249,235,199,.62);
+      box-shadow:0 16px 36px rgba(79,42,21,.08);
+    }
+    .message-panel .quote{color:#4a261a}
+    .message-panel p,#finalText{color:#735044}
+    #finalText h3{color:#4a251a!important}
+    .surprise-rose{
+      width:150px;height:150px;margin:0 auto 12px;
+      font-size:0;
+      background:url("assets/rose_reference.png") 82% 8%/270px auto no-repeat;
+      border-radius:50%;
+      box-shadow:0 12px 30px rgba(70,30,18,.14);
+    }
+
+    .modal{background:rgba(43,21,13,.76)}
+    .modal-card{
+      color:#48271d;
+      border:1px solid rgba(91,48,26,.32);
+      background:
+        repeating-linear-gradient(0deg,rgba(93,58,30,.025) 0 1px,transparent 1px 4px),
+        linear-gradient(145deg,#f4dfad,#e6c98f);
+      box-shadow:0 35px 80px rgba(45,20,12,.34);
+    }
+    .modal-card h3{color:#4a251a}
+    .modal-card p{color:#6c493d}
+    .modal-rose{
+      width:105px;height:105px;margin:0 auto;
+      font-size:0;
+      background:url("assets/rose_reference.png") 82% 8%/200px auto no-repeat;
+      border-radius:50%;
+    }
+    .close{background:rgba(77,38,22,.10);color:#4b281c}
+    .back-btn{
+      border-color:rgba(91,48,26,.25);
+      background:rgba(255,247,218,.48);
+      color:#543024;
+    }
+    .back-btn:hover{background:rgba(255,247,218,.72)}
+    .subpage-top span{color:#775247!important}
+    footer{color:#856153}
+
+    /* ornamental corners */
+    .vintage-corner{
+      position:fixed;z-index:61;pointer-events:none;
+      width:86px;height:86px;
+      opacity:.75;
+    }
+    .vintage-corner::before{
+      content:"";
+      position:absolute;inset:12px;
+      border-top:2px solid rgba(89,45,24,.42);
+      border-left:2px solid rgba(89,45,24,.42);
+      border-radius:70% 0 0 0;
+    }
+    .vc1{left:8px;top:8px}
+    .vc2{right:8px;top:8px;transform:rotate(90deg)}
+    .vc3{right:8px;bottom:8px;transform:rotate(180deg)}
+    .vc4{left:8px;bottom:8px;transform:rotate(270deg)}
+
+  
+    .hero-video{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:0;
+    }
+    .hero-visual::after{
+      z-index:1;
+    }
+    .hero-caption{
+      z-index:2;
+    }
+
+  
+    .photo-real{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .photo-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:linear-gradient(to top,rgba(35,10,5,.72),transparent 48%);
+    }
+    .photo-card .photo-info{
+      position:absolute;
+      left:0;right:0;bottom:0;
+      z-index:3;
+    }
+
+    /* 7-photo carousel positions */
+    .photo-card:nth-child(1){transform:rotateY(0deg) translateZ(430px)!important}
+    .photo-card:nth-child(2){transform:rotateY(51.4286deg) translateZ(430px)!important}
+    .photo-card:nth-child(3){transform:rotateY(102.8571deg) translateZ(430px)!important}
+    .photo-card:nth-child(4){transform:rotateY(154.2857deg) translateZ(430px)!important}
+    .photo-card:nth-child(5){transform:rotateY(205.7143deg) translateZ(430px)!important}
+    .photo-card:nth-child(6){transform:rotateY(257.1429deg) translateZ(430px)!important}
+    .photo-card:nth-child(7){transform:rotateY(308.5714deg) translateZ(430px)!important}
+
+    @media(max-width:860px){
+      .photo-card:nth-child(1){transform:rotateY(0deg) translateZ(345px)!important}
+      .photo-card:nth-child(2){transform:rotateY(51.4286deg) translateZ(345px)!important}
+      .photo-card:nth-child(3){transform:rotateY(102.8571deg) translateZ(345px)!important}
+      .photo-card:nth-child(4){transform:rotateY(154.2857deg) translateZ(345px)!important}
+      .photo-card:nth-child(5){transform:rotateY(205.7143deg) translateZ(345px)!important}
+      .photo-card:nth-child(6){transform:rotateY(257.1429deg) translateZ(345px)!important}
+      .photo-card:nth-child(7){transform:rotateY(308.5714deg) translateZ(345px)!important}
+    }
+
+  
+    /* ENVELOPE SURPRISE */
+    .surprise-experience{
+      max-width:860px;
+      margin:0 auto;
+      text-align:center;
+    }
+
+    .envelope-stage{
+      position:relative;
+      min-height:430px;
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      border-radius:30px;
+      border:1px solid rgba(91,48,26,.24);
+      background:
+        radial-gradient(circle at center,rgba(112,0,20,.08),transparent 34%),
+        repeating-linear-gradient(0deg,rgba(93,58,30,.02) 0 1px,transparent 1px 4px),
+        rgba(247,232,194,.58);
+      box-shadow:0 18px 40px rgba(76,38,18,.08);
+    }
+
+    .envelope-wrap{
+      position:relative;
+      width:min(420px,84vw);
+      height:270px;
+      cursor:pointer;
+      perspective:1000px;
+      transition:.6s ease;
+    }
+
+    .envelope-wrap.opened{
+      transform:translateY(55px) scale(.92);
+    }
+
+    .envelope-back{
+      position:absolute;
+      inset:0;
+      border-radius:14px;
+      background:linear-gradient(145deg,#d3ad72,#edd2a0);
+      border:2px solid #8c5934;
+      box-shadow:0 24px 45px rgba(76,35,18,.22);
+      overflow:hidden;
+    }
+
+    .envelope-back::before,
+    .envelope-back::after{
+      content:"";
+      position:absolute;
+      top:0;
+      width:0;height:0;
+      border-top:135px solid transparent;
+      border-bottom:135px solid transparent;
+    }
+
+    .envelope-back::before{
+      left:0;
+      border-left:210px solid rgba(145,91,51,.22);
+    }
+
+    .envelope-back::after{
+      right:0;
+      border-right:210px solid rgba(145,91,51,.18);
+    }
+
+    .envelope-flap{
+      position:absolute;
+      left:0;right:0;top:0;
+      margin:auto;
+      width:0;height:0;
+      border-left:210px solid transparent;
+      border-right:210px solid transparent;
+      border-top:145px solid #e7c692;
+      transform-origin:top center;
+      transition:transform .8s cubic-bezier(.2,.8,.2,1);
+      z-index:5;
+      filter:drop-shadow(0 6px 5px rgba(82,41,21,.12));
+    }
+
+    .envelope-wrap.opened .envelope-flap{
+      transform:rotateX(180deg);
+    }
+
+    .seal{
+      position:absolute;
+      left:50%;top:105px;
+      transform:translateX(-50%);
+      z-index:7;
+      width:74px;height:74px;border-radius:50%;
+      display:grid;place-items:center;
+      background:
+        radial-gradient(circle at 35% 30%,#d62543,#7d0016 72%);
+      border:3px solid rgba(83,0,14,.45);
+      box-shadow:0 8px 18px rgba(75,0,13,.28);
+      color:#ffe9df;
+      font-size:30px;
+      transition:.35s;
+    }
+
+    .envelope-wrap.opened .seal{
+      opacity:0;
+      transform:translateX(-50%) scale(.55);
+    }
+
+    .letter-paper{
+      position:absolute;
+      left:50%;
+      top:42px;
+      transform:translateX(-50%) translateY(72px);
+      width:84%;
+      min-height:300px;
+      padding:28px 24px;
+      border:1px solid rgba(90,48,28,.28);
+      background:
+        repeating-linear-gradient(0deg,rgba(95,58,30,.025) 0 1px,transparent 1px 4px),
+        linear-gradient(145deg,#fff2c9,#edd5a1);
+      box-shadow:0 18px 36px rgba(75,37,20,.18);
+      border-radius:8px;
+      opacity:0;
+      z-index:3;
+      transition:transform 1s ease .22s,opacity .55s ease .25s;
+    }
+
+    .envelope-wrap.opened .letter-paper{
+      transform:translateX(-50%) translateY(-165px);
+      opacity:1;
+      z-index:8;
+    }
+
+    .letter-paper h3{
+      margin:0 0 12px;
+      color:#650012;
+      font-family:Georgia,serif;
+      font-size:31px;
+    }
+
+    .letter-paper p{
+      color:#654437;
+      line-height:1.78;
+      font-size:15px;
+      margin:0;
+    }
+
+    .letter-rose{
+      font-size:42px;
+      margin-bottom:10px;
+    }
+
+    .open-envelope-btn{
+      margin-top:24px;
+    }
+
+    .after-letter{
+      display:none;
+      margin-top:35px;
+      animation:fadeUp .55s ease;
+    }
+
+    .after-letter.show{
+      display:block;
+    }
+
+    .last-surprise-btn{
+      margin-top:12px;
+    }
+
+    .final-photo-reveal{
+      display:none;
+      max-width:650px;
+      margin:32px auto 0;
+      padding:28px;
+      border-radius:26px;
+      border:1px solid rgba(91,48,26,.25);
+      background:
+        repeating-linear-gradient(0deg,rgba(93,58,30,.02) 0 1px,transparent 1px 4px),
+        rgba(250,237,201,.76);
+      box-shadow:0 22px 50px rgba(75,38,19,.12);
+      animation:photoReveal .65s ease;
+    }
+
+    .final-photo-reveal.show{
+      display:block;
+    }
+
+    @keyframes photoReveal{
+      from{opacity:0;transform:translateY(20px) scale(.96)}
+      to{opacity:1;transform:none}
+    }
+
+    .polaroid{
+      width:min(360px,86%);
+      margin:0 auto 20px;
+      padding:12px 12px 48px;
+      background:#fffaf0;
+      box-shadow:0 18px 38px rgba(68,31,15,.22);
+      transform:rotate(-2deg);
+      border:1px solid rgba(90,48,28,.15);
+    }
+
+    .polaroid img{
+      width:100%;
+      aspect-ratio:4/5;
+      object-fit:cover;
+      display:block;
+    }
+
+    .polaroid-caption{
+      margin-top:13px;
+      font-family:"Brush Script MT",cursive;
+      color:#6a3d31;
+      font-size:23px;
+    }
+
+    .final-photo-reveal h3{
+      color:#650012;
+      font-family:Georgia,serif;
+      font-size:31px;
+      margin:0 0 10px;
+    }
+
+    .final-photo-reveal p{
+      color:#67463a;
+      line-height:1.8;
+      margin:0;
+    }
+
+    .rose-petal{
+      position:fixed;
+      top:-30px;
+      z-index:170;
+      pointer-events:none;
+      font-size:18px;
+      animation:roseFall linear forwards;
+    }
+
+    @keyframes roseFall{
+      to{
+        transform:translateY(110vh) rotate(540deg);
+        opacity:.05;
+      }
+    }
+
+    @media(max-width:600px){
+      .envelope-stage{min-height:500px}
+      .envelope-wrap{transform:scale(.82)}
+      .envelope-wrap.opened{transform:translateY(70px) scale(.78)}
+      .letter-paper{padding:24px 20px}
+      .letter-paper h3{font-size:26px}
+    }
+
+  
+    .music-player{
+      position:fixed;left:50%;bottom:14px;transform:translateX(-50%);
+      z-index:500;width:min(720px,calc(100% - 22px));
+      display:flex;align-items:center;gap:10px;padding:10px 13px;
+      border-radius:18px;background:rgba(79,0,15,.95);color:#fff1d7;
+      box-shadow:0 14px 35px rgba(55,0,10,.30);backdrop-filter:blur(10px);
+      border:1px solid rgba(255,230,190,.20)
+    }
+    .music-meta{flex:1;min-width:0}
+    .music-meta strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .music-meta span{font-size:11px;opacity:.72}
+    .music-btn{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,240,210,.25);
+      background:rgba(255,255,255,.08);color:#fff4dc;cursor:pointer}
+    .music-progress{width:130px;accent-color:#d8a85b}
+    @media(max-width:600px){.music-progress{width:72px}.music-meta span{display:none}.music-player{gap:7px}}
+    
+
+.full-monthsary-letter{max-width:850px;margin:26px auto;padding:42px 38px;background:repeating-linear-gradient(0deg,rgba(98,58,31,.025) 0 1px,transparent 1px 4px),linear-gradient(145deg,#fff1c8,#eed7a5);border:1px solid rgba(99,55,30,.30);border-radius:20px;box-shadow:0 22px 50px rgba(68,31,14,.14);position:relative;overflow:hidden}
+.full-monthsary-letter h2{color:#650012;font-family:Georgia,serif;text-align:center;font-size:34px;margin:0 0 8px}
+.letter-subtitle{text-align:center;color:#8a604a;font-style:italic;margin-bottom:30px}
+.monthsary-paragraph{color:#5f4438;line-height:1.9;font-size:15px;text-align:left;margin:0 0 20px}
+.letter-ending{text-align:center;color:#720016;font-family:Georgia,serif;font-size:24px;margin-top:28px}
+@media(max-width:600px){.full-monthsary-letter{padding:32px 22px}.full-monthsary-letter h2{font-size:27px}.monthsary-paragraph{font-size:14px;line-height:1.8}}
+
+</style>
+</head>
+<body>
+  <span class="vintage-corner vc1"></span><span class="vintage-corner vc2"></span><span class="vintage-corner vc3"></span><span class="vintage-corner vc4"></span>
+  <div class="ambient a1"></div>
+  <div class="ambient a2"></div>
+
+  <div class="wrap">
+    <nav class="nav">
+      <div class="brand">
+        <div class="brand-mark">🌹</div>
+        <span>Our First Monthsary</span>
+      </div>
+      <div class="nav-actions">
+        <button type="button" data-go="dashboard">Dashboard</button>
+        <button type="button" data-go="gallery">Gallery</button>
+        <button type="button" data-go="message">Message</button>
+        <button type="button" data-go="surprise">Surprise</button>
+      </div>
+    </nav>
+
+    <main>
+      <div class="page-view home-view active" id="homeView">
+        <section class="hero">
+        <div>
+          <div class="eyebrow">🌹 First month, first chapter</div>
+          <h1>Happy First <span class="accent">Monthsary</span></h1>
+          <p class="lead">
+            A little place for our memories, the words I want to keep, and one special surprise.
+            Start from the dashboard, then visit the rotating gallery and tap each memory.
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" type="button" data-go="dashboard">Open Dashboard ❤️</button>
+            <button class="btn btn-light" type="button" data-go="gallery">View Gallery</button>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <video class="hero-video" autoplay muted loop playsinline preload="metadata">
+            <source src="assets/one_month_of_us.mp4" type="video/mp4">
+          </video>
+          <div class="hero-caption">
+            <div>
+              <strong>One Month of Us</strong>
+              <span>And this is only the beginning.</span>
+            </div>
+            <div class="month-chip">01 Month</div>
+          </div>
+        </div>
+      </section>
+        <section id="dashboard">
+        <div class="section-head">
+          <small>Dashboard</small>
+          <h2>Choose a Memory</h2>
+          <p>A clean little dashboard that leads to the gallery, message, and final surprise.</p>
+        </div>
+
+        <div class="dashboard">
+          <article class="dash-card" data-cardgo="gallery">
+            <div class="iconbox">🖼️</div>
+            <h3>Gallery</h3>
+            <p>Seven rotating memories in a 3D carousel. Tap one to pause the rotation and reveal its message with fireworks.</p>
+            <span class="linkish">Open Gallery →</span>
+          </article>
+
+          <article class="dash-card" data-cardgo="message">
+            <div class="iconbox">💌</div>
+            <h3>Message</h3>
+            <p>A dedicated letter section with a softer, more elegant presentation for your first monthsary message.</p>
+            <span class="linkish">Read Message →</span>
+          </article>
+
+          <article class="dash-card" data-cardgo="surprise">
+            <div class="iconbox">🌹</div>
+            <h3>Surprise</h3>
+            <p>A simple final reveal with a red rose, hidden message, and a celebratory firework effect.</p>
+            <span class="linkish">Open Surprise →</span>
+          </article>
+        </div>
+      </section>
+      </div>
+
+      <div class="page-view subpage" id="galleryView">
+        <section>
+          <div class="subpage-top">
+            <button class="back-btn" type="button" data-home>← Back to Home</button>
+            <span style="color:#b9959d;font-size:13px">Our First Monthsary 🌹</span>
+          </div>
+          
+        <div class="section-head">
+          <small>Gallery</small>
+          <h2>Our Rotating Memories</h2>
+          <p>The gallery moves continuously like a real 3D photo display. Tap a picture to reveal the message behind it.</p>
+        </div>
+
+        <div class="gallery-shell" id="galleryShell">
+          <div class="carousel3d">
+
+            <button class="photo-card" type="button"
+              data-title="The Beginning" data-message="This photo reminds me of how our story slowly started. From simple conversations and little moments, we reached our very first monthsary together. ❤️">
+              <img class="photo-real" src="assets/gallery_1.jpg" alt="Gallery memory 1">
+              <div class="photo-info">
+                <strong>Memory 1</strong>
+                <span>Tap to reveal message</span>
+              </div>
+            </button>
+
+            <button class="photo-card" type="button"
+              data-title="Little Moments" data-message="Every small moment with you became something worth remembering. One month may sound short, but it already gave us so many memories to keep. 🌹">
+              <img class="photo-real" src="assets/gallery_2.jpg" alt="Gallery memory 2">
+              <div class="photo-info">
+                <strong>Memory 2</strong>
+                <span>Tap to reveal message</span>
+              </div>
+            </button>
+
+            <button class="photo-card" type="button"
+              data-title="A Memory I Keep" data-message="I love how each picture holds a different memory. Looking back at them makes our first month feel even more special to me. ❤️">
+              <img class="photo-real" src="assets/gallery_3.jpg" alt="Gallery memory 3">
+              <div class="photo-info">
+                <strong>Memory 3</strong>
+                <span>Tap to reveal message</span>
+              </div>
+            </button>
+
+            <button class="photo-card" type="button"
+              data-title="Growing Together" data-message="This first month was not only about sweet moments. It was also about learning, understanding, and knowing each other more day by day. 🌹">
+              <img class="photo-real" src="assets/gallery_4.jpg" alt="Gallery memory 4">
+              <div class="photo-info">
+                <strong>Memory 4</strong>
+                <span>Tap to reveal message</span>
+              </div>
+            </button>
+
+            <button class="photo-card" type="button"
+              data-title="One Month Closer" data-message="Every conversation, laugh, and simple update brought us closer to this day. Happy first monthsary to us, my love. ❤️">
+              <img class="photo-real" src="assets/gallery_5.jpg" alt="Gallery memory 5">
+              <div class="photo-info">
+                <strong>Memory 5</strong>
+                <span>Tap to reveal message</span>
+              </div>
+            </button>
+
+            <button class="photo-card" type="button"
+              data-title="Flowers for Our First Month" data-message="For now, these little surprises are my way of making our first monthsary special. Someday, I hope we can celebrate moments like this together. 🌹">
+              <img class="photo-real" src="assets/gallery_6.jpg" alt="Gallery memory 6">
+              <div class="photo-info">
+                <strong>Memory 6</strong>
+                <span>Tap to reveal message</span>
+              </div>
+            </button>
+
+            <button class="photo-card" type="button"
+              data-title="Our First Chapter" data-message="And here we are—one beautiful month later. This is only our first chapter, and I hope we make many more memories together. Happy first monthsary. ❤️">
+              <img class="photo-real" src="assets/gallery_7.jpg" alt="Gallery memory 7">
+              <div class="photo-info">
+                <strong>Memory 7</strong>
+                <span>Tap to reveal message</span>
+              </div>
+            </button>
+          </div>
+          <div class="gallery-caption">🌹 Tap any rotating memory to open its hidden message</div>
+        </div>
+      
+        </section>
+      </div>
+
+      
+      <div class="page-view subpage" id="messageView">
+        <section>
+          <div class="subpage-top">
+            <button class="back-btn" type="button" data-home>← Back to Home</button>
+            <span style="color:#b9959d;font-size:13px">Our First Monthsary 🌹</span>
+          </div>
+          <div class="section-head">
+            <small>Message</small>
+            <h2>A Letter for Our First Month</h2>
+          </div>
+          <div class="full-monthsary-letter">
+            <h2>Happy First Monthsary, My Love ❤️</h2>
+            <div class="letter-subtitle">A special letter for our first beautiful month.</div>
+            <p class="monthsary-paragraph">Happy first monthsary, my love, asawa, misis, beaaa, ma’am, atee, preee! HAHAHA ang dami nating tawagan no? Parang kada mood may ibang tawag ako sayo HAHAHA. Pero grabe, my love, one month na talaga tayo pooo. Ang bilis lang no? Parang kailan lang nagsisimula pa lang tayo, nagkikilala, nagkukulitan, nagkekwento ng kung ano-ano, tapos ngayon first monthsary na natin. Hindi ko rin namalayan na lumipas na pala yung isang buwan kasi siguro kapag masaya ka talaga sa isang tao, hindi mo namamalayan yung oras.</p>
+<p class="monthsary-paragraph">Isang buwan pa lang tayo pero ang dami na agad nating naging memories kahit mostly sa chat at call lang muna. Ang dami na nating kwentuhan, tawanan, kulit, lambingan, mga random na usapan, seryosong usapan, pati yung mga times na tahimik lang or hindi okay yung mood natin. Lahat yun importante sakin kasi parte yun ng pagkilala natin sa isa’t isa. Hindi naman araw-araw kailangan puro saya at kilig. Mas importante sakin na kahit may mga araw na hindi tayo okay, natututo pa rin tayong intindihin yung isa’t isa.</p>
+<p class="monthsary-paragraph">Magmo-monthsary muna tayo ngayon sa chat lang, pero okay lang yun, my love.  Alam ko naman na darating din yung time na hindi na tayo sa chat or call lang magce-celebrate. Babawi po talaga ako sayo kapag nandito ka na. Gusto ko kapag dumating yung araw na magkasama na tayo, maranasan naman natin yung mga simpleng bagay na ngayon pinag-uusapan lang natin. Yung makapag-date tayo, makakain together, makapaglakad kung saan-saan, makapagkwentuhan nang harapan, makapagpicture together, at gumawa ng sarili nating memories na hindi na kailangan ng screen sa pagitan natin.</p>
+<p class="monthsary-paragraph">Wala man akong maibigay na totoong flowers sayo ngayon, gusto ko pa rin gawing special yung araw natin kahit sa simpleng paraan lang. Sorry po, ito lang muna kaya ng asawa mo ngayon HAHAHA. Pero babawi naman po ako sayo soon. Darating din yung time na hindi na puro virtual flowers at messages lang yung matatanggap mo sakin. Soon may bems ka sakin oy ano daw?! HAHAHA. Kainan na talaga ’to, ems!  Seryoso na nga kasi baka kung saan na naman mapunta tong monthsary message natin HAHAHA.</p>
+<p class="monthsary-paragraph">Pero ayun na nga, my love, seryoso na talaga. Gusto ko lang sabihin na sobrang thankful ako na dumating ka sa buhay ko. Thank you kasi binigyan mo ako ng chance na makilala ka nang mas malalim. Thank you sa oras mo, sa effort mo, sa pag-intindi sakin, sa pakikinig sa mga kwento ko, at kahit sa mga simpleng updates mo sa araw-araw. Kahit simpleng message mo lang minsan, malaking bagay na yun sakin kasi gusto kong malaman kung kumusta ka at kung okay ka.</p>
+<p class="monthsary-paragraph">Thank you rin kasi hinahayaan mo akong maging part ng araw mo. Yung simpleng good morning natin, mga random na kwento throughout the day, mga tawanan natin, hanggang sa good night bago matulog sobrang naa-appreciate ko lahat yun. Baka simpleng bagay lang siya para sa iba, pero para sakin special yun kasi ikaw yung taong kausap ko. Ikaw yung hinahanap-hanap ko kapag may gusto akong ikwento, kapag may nakakatawa akong nakita, or kapag gusto ko lang ng kausap.</p>
+<p class="monthsary-paragraph">And thank you, my love, sa tiwala mo sakin. Lalo na sa mga bagay na hindi madaling sabihin at sa mga kwento na kailangan talaga ng lakas ng loob bago ma-share. Sobrang naa-appreciate ko na pinili mong mag-open sakin. Hindi ko ita-take for granted yung trust na binigay mo, kasi alam kong hindi madaling magtiwala lalo na kapag may mga nangyari before na nakasakit or nag-iwan ng takot sayo.</p>
+<p class="monthsary-paragraph">Kaya lagi mong tatandaan na hindi mo kailangang matakot na magsabi sakin, okay po? Kung may problema ka, may iniisip ka, may nararamdaman ka, may bumabagabag sayo, or kahit feeling mo maliit lang yung dahilan, pwede mong sabihin sakin kapag ready ka. Hindi kita ija-judge. Hindi ko sasabihin na mababaw lang yung nararamdaman mo. Makikinig ako sayo at susubukan kong intindihin kung saan ka nanggagaling.</p>
+<p class="monthsary-paragraph">Alam kong may mga bagay kang pinagdaanan dati na nakaapekto sayo hanggang ngayon, kaya naiintindihan ko kung minsan may takot ka or nahihirapan kang magtiwala nang buo. Valid yung nararamdaman mo, my love. Hindi kita pipilitin maging okay agad, at hindi rin kita pipilitin sabihin lahat sakin. Take your time lang. Kung kailan ka ready, nandito lang ako para makinig.</p>
+<p class="monthsary-paragraph">Hindi ko man mababago yung past mo or mabura yung mga bagay na nangyari before, pero kaya kong piliin kung paano kita pakikitunguhan ngayon. Kaya kong respetuhin ka, intindihin ka, pakinggan ka, at maging patient sayo. Gusto kong maramdaman mo na hindi lahat ng tao pare-pareho at hindi mo kailangang matakot palagi. Pero hindi rin kita mamadaliin. Unti-unti lang, my love. At your own pace.</p>
+<p class="monthsary-paragraph">And please, huwag mong isipin na kailangan mong maging perfect para mahalin kita. Hindi naman perfect relationship yung gusto ko. Ayoko rin nung relationship na puro saya lang kapag okay tapos kapag may problema biglang susuko. Gusto ko yung kaya nating maging honest sa isa’t isa. Kapag may mali ako, sabihin mo sakin. Kapag may nagawa akong hindi mo nagustuhan, sabihin mo. Makikinig ako at aayusin ko kung ano yung kailangan kong ayusin.</p>
+<p class="monthsary-paragraph">Ganun din ako sayo. Kapag may misunderstanding tayo, gusto kong pag-usapan natin nang maayos. Hindi para malaman kung sino yung tama at sino yung mali, kundi para maintindihan natin kung ano yung naramdaman ng bawat isa. Kasi para sakin, hindi naman tayo magkalaban. Tayo yung magkakampi. Kung may problema, problema yung kalaban natin, hindi yung isa’t isa.</p>
+<p class="monthsary-paragraph">May mga araw siguro na magiging makulit tayo, may araw na tahimik, may araw na moody, may araw na sobrang sweet, at may araw na baka pareho tayong pagod. Normal lang yun. Hindi naman araw-araw pareho yung energy natin. Ang importante sakin, hindi natin gagawing dahilan yung isang bad day para kalimutan lahat ng magandang meron tayo.</p>
+<p class="monthsary-paragraph">Lagi mo ring tatandaan, my love, na mahal na mahal na mahal na mahal kitaaaa. At hindi ko gustong puro salita lang yung “mahal kita.” Gusto kong habang tumatagal tayo, makita mo rin yun sa actions ko. Sa paraan ng pakikinig ko sayo, sa pagrespeto ko sa boundaries mo, sa pag-intindi ko kapag hindi ka okay, sa pagiging present ko kapag kailangan mo ng kausap, at sa effort ko na alagaan kung ano yung meron tayo.</p>
+<p class="monthsary-paragraph">Kung ano ako sayo ngayon, gusto kong dalhin yung same respect, care, effort, at pagiging sincere hanggang sa mga susunod pang buwan natin. Syempre marami pa rin akong matututunan tungkol sayo at marami ka pang matututunan tungkol sakin. Hindi ko naman sasabihin na alam ko na lahat tungkol sa relationship kasi pareho naman tayong natututo. Pero willing akong matuto kasama ka.</p>
+<p class="monthsary-paragraph">At kapag may times na gusto mo muna mapag-isa or kailangan mo ng space para makapag-isip, rerespetuhin ko yun. Hindi ibig sabihin nun na iiwan na kita or wala na akong pakialam. Naiintindihan ko na minsan kailangan din natin ng sariling oras. Hindi ko gustong maramdaman mo na kailangan mong maging available palagi para lang mapatunayan na mahal mo ako. May sarili ka ring buhay, responsibilities, family, friends, goals, at mga bagay na gusto mong gawin, at susuportahan kita doon. Bakit lumuluha ako haha masaya ako ngayon my lovee.</p>
+<p class="monthsary-paragraph">Gusto ko rin na habang magkasama tayo, hindi natin makalimutan yung sarili nating mga pangarap. Gusto kong makita kang maabot yung mga gusto mong maabot sa buhay. Gusto kong maging isa sa mga taong sumusuporta sayo, hindi yung humahadlang sayo. Kapag may gusto kang gawin na makakabuti sayo, I’ll support you. Kapag napapagod ka, pahinga ka. Kapag may achievement ka, kahit maliit man yan, gusto kong icelebrate kasama ka.</p>
+<p class="monthsary-paragraph">One month pa lang tayo, my love, pero sana simula pa lang ito ng marami pa nating monthsaries at memories together. Marami pa tayong matututunan tungkol sa isa’t isa, marami pa tayong pagdadaanan, at marami pa tayong pangarap na gusto kong unti-unti nating gawin. Hindi natin kailangang madaliin lahat. One step at a time lang tayo. Basta habang nagpapatuloy tayo, aalagaan natin yung trust, respect, communication, at pagmamahal na meron tayo.</p>
+<p class="monthsary-paragraph">Excited ako sa mga susunod pang buwan natin. Excited ako sa mga bagong kwento na mabubuo natin, sa mga bagong inside jokes natin, sa mga random na tawagan natin na baka dumami pa lalo HAHAHA, sa mga pictures natin someday, sa mga gala natin, at sa lahat ng simpleng bagay na magiging special dahil magkasama nating ginawa.</p>
+<p class="monthsary-paragraph">Soon, hindi na lang tayo magmo-monthsary sa chat. Soon, makakapag-celebrate din tayo nang magkasama. Makakapagbigay na ako sayo ng totoong flowers, makakapag-date tayo, makakain tayo together, makakapagpicture tayo nang marami, at makakagawa tayo ng memories na matagal nating maaalala. Hindi ko alam kung magiging perfect ba lahat ng plano natin, pero okay lang. Kahit hindi perfect, basta genuine at masaya tayo, enough na yun para sakin.</p>
+<p class="monthsary-paragraph">Gusto ko rin yung mga simpleng araw lang natin someday. Hindi kailangan palaging date or gala. Kahit simpleng tambay lang, kain tayo ng kung ano, kwentuhan tungkol sa araw natin, manood ng movie, tumawa sa walang kwentang bagay, or tahimik lang habang pareho tayong may ginagawa. Yun yung mga moments na gusto kong ma-experience kasama ka. Yung comfortable lang tayo sa presence ng isa’t isa.</p>
+<p class="monthsary-paragraph">Sa ngayon, habang hindi pa natin nagagawa lahat yun, gagawin ko muna yung kaya ko. Messages, calls, simpleng surprises, pangungulit sayo, pag-remind na kumain ka at magpahinga, at pakikinig kapag may gusto kang ikwento. Hindi man katumbas yun ng pagiging magkasama talaga, sana kahit papaano maramdaman mo na sincere yung effort ko.</p>
+<p class="monthsary-paragraph">At gusto kong malaman mo na sobrang proud ako sayo, my love. Proud ako hindi lang kapag may achievement ka, kundi pati sa mga araw na tahimik mo lang kinakaya yung mga bagay na mabigat para sayo. Proud ako kapag pinipili mong bumangon at ituloy yung araw mo. Proud ako kapag nagiging honest ka sa nararamdaman mo. Hindi mo kailangang patunayan palagi na strong ka. Okay lang mapagod, okay lang magkaroon ng bad days, at okay lang humingi ng support kapag kailangan mo.</p>
+<p class="monthsary-paragraph">Thank you dahil naging comfortable ka na ipakita sakin yung iba’t ibang side mo. Yung makulit ka, sweet ka, tahimik ka, seryoso ka, minsan moody ka lahat yun parte mo. Hindi ko naman ine-expect na palagi kang nasa magandang mood. Ang gusto ko lang is maging totoo tayo sa isa’t isa.</p>
+<p class="monthsary-paragraph">And my love, kung dumating man yung panahon na may hindi tayo pagkakaintindihan, sana lagi nating balikan kung bakit natin pinili yung isa’t isa. Hindi para pilitin yung isang bagay na hindi okay, kundi para maalala natin na communication and respect matter. Ayoko na dahil lang sa isang misunderstanding, makalimutan natin lahat ng effort at memories na binuo natin.</p>
+<p class="monthsary-paragraph">Marami pa akong gustong sabihin sayo pero baka abutin na tayo ng second monthsary bago mo matapos basahin to HAHAHA. Pero deserve mo naman ng mahabang message ngayon kasi first monthsary natin to. Once lang tayo magkakaroon ng first monthsary, kaya gusto kong maging memorable kahit simpleng message lang muna yung maibigay ko.</p>
+<p class="monthsary-paragraph">So ayun, happy happy first monthsary satin, my loveee!  Happy monthsary sa asawa ko, misis ko, beaaa ko, ma’am ko, atee ko, preee ko, at kung ano-ano pang tawag na maiisip natin HAHAHA. Thank you for this beautiful first month together. Thank you sa tiwala, oras, effort, kulit, lambing, kwentuhan, tawanan, at sa lahat ng little things na ginagawa mong special yung araw ko.</p>
+<p class="monthsary-paragraph">Thank you for choosing to share this chapter with me. Hindi ko alam lahat ng mangyayari sa future, pero ang kaya kong gawin ngayon is alagaan at pahalagahan kung ano yung meron tayo. Day by day, month by month, one step at a time.</p>
+<p class="monthsary-paragraph">Mahal na mahal na mahal na mahal na mahal kitaaaa, my loveeee. Please never forget that. Hindi lang kapag monthsary natin, hindi lang kapag sweet tayo, kundi kahit ordinary day lang. I’ll keep doing my best na iparamdam sayo kung gaano kita pinapahalagahan.</p>
+<p class="monthsary-paragraph">Sana itong first month natin maging beginning pa lang ng marami nating masasayang memories together. At sana someday kapag binalikan natin tong message nato, tatawanan natin kasi dati sa chat lang tayo nagmo-monthsary tapos magkasama na tayong nagce-celebrate.</p>
+<p class="monthsary-paragraph">For now, enjoy natin yung araw natin, okay po? First monthsary natin to ehhh!  Kahit malayo tayo sa isa’t isa ngayon, special pa rin to para sakin kasi tayo yung cine-celebrate natin today.</p>
+<p class="monthsary-paragraph">Happy first monthsary ulit, my love, asawa, misis, beaaa, ma’am, atee at preee!  Mahal na mahal kitaaaa sobraaa. Thank you for being part of my life and thank you sa isang buwan na puno ng kwento at memories.</p>
+<p class="monthsary-paragraph">More monthsaries, more tawanan, more kwentuhan, more kulit, more understanding, more memories, at marami pang araw na sabay nating haharapin.</p>
+<p class="monthsary-paragraph">I love you so much poooo, my loveeee. Happy first monthsary satin dalawa! Mwaaaah! ❤️❤️❤️</p>
+            <div class="letter-ending">Happy First Monthsary ❤️🌹</div>
+          </div>
+        </section>
+      </div>
+
+      <div class="page-view subpage" id="surpriseView">
+        <section>
+          <div class="subpage-top">
+            <button class="back-btn" type="button" data-home>← Back to Home</button>
+            <span style="color:#b9959d;font-size:13px">Our First Monthsary 🌹</span>
+          </div>
+          
+        <div class="section-head">
+          <small>Surprise</small>
+          <h2>One Last Rose</h2>
+        </div>
+
+        
+        <div class="surprise-experience">
+          <div class="envelope-stage">
+            <div class="envelope-wrap" id="envelopeWrap" aria-label="Monthsary envelope">
+              <div class="letter-paper">
+                <div class="letter-rose">🌹</div>
+                <h3>Happy First Monthsary ❤️</h3>
+                <p>
+                  Thank you for every conversation, every laugh, every effort, and every little moment
+                  that became part of our first month. I’m grateful for this beginning and for the memories
+                  we are slowly creating together. I hope we continue choosing understanding, patience,
+                  trust, and genuine care as our story grows. This first month is only one small chapter,
+                  but it already means so much.
+                </p>
+              </div>
+
+              <div class="envelope-back"></div>
+              <div class="envelope-flap"></div>
+              <div class="seal">🌹</div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary open-envelope-btn" id="openEnvelopeBtn" type="button">
+            Open My Surprise 🌹
+          </button>
+
+          <div class="after-letter" id="afterLetter">
+            <h3 style="font-family:Georgia,serif;font-size:32px;color:#5b0010;margin-bottom:10px">
+              This is only our first chapter ❤️
+            </h3>
+            <p style="color:#6b4a3d;line-height:1.8;max-width:590px;margin:0 auto 18px">
+              One month of memories, and many more beautiful moments still waiting for us.
+            </p>
+            <button class="btn btn-primary last-surprise-btn" id="lastSurpriseBtn" type="button">
+              One Last Surprise ❤️
+            </button>
+          </div>
+
+          <div class="final-photo-reveal" id="finalPhotoReveal">
+            <div class="polaroid">
+              <img src="assets/one_beautiful_chapter.jpg" alt="One Beautiful Chapter">
+              <div class="polaroid-caption">One Beautiful Chapter 🌹</div>
+            </div>
+            <h3>One Beautiful Chapter ❤️</h3>
+            <p>Thank you for being part of this first month and for giving me so many memories to appreciate.<br>This may only be our first monthsary, but every conversation, every laugh, every little effort,<br>and every moment we shared already means a lot to me. I know we still have so much to learn<br>about each other, and that is something I look forward to. I hope we continue choosing patience,<br>understanding, respect, trust, and care as we make more memories together.<br><br>For now, this photo will always remind me of our first beautiful chapter. Someday, I hope we can<br>look back at this website together and smile because this was only the beginning. More monthsaries,<br>more memories, more laughter, and more simple moments with you. Happy first monthsary, my love. 🌹❤️</p>
+          </div>
+        </div>
+      </section>
+      </div>
+    </main>
+
+
+        <footer>Made with 🌹 for our first monthsary</footer>
+  </div>
+
+  <div class="modal" id="memoryModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <button class="close" id="closeModal" type="button" aria-label="Close">×</button>
+      <div class="modal-rose">🌹</div>
+      <h3 id="modalTitle">Our Memory</h3>
+      <p id="modalMessage"></p>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const galleryShell = document.getElementById('galleryShell');
+      const modal = document.getElementById('memoryModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalMessage = document.getElementById('modalMessage');
+      const closeModal = document.getElementById('closeModal');
+
+      function showView(name){
+        document.querySelectorAll('.page-view').forEach(v=>v.classList.remove('active'));
+        const target = document.getElementById(name + 'View');
+        if(target){
+          target.classList.add('active');
+          window.scrollTo({top:0,behavior:'smooth'});
+        }
+      }
+
+      function go(id){
+        if(id === 'dashboard'){
+          showView('home');
+          setTimeout(()=>{
+            const el = document.getElementById('dashboard');
+            if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+          },60);
+          return;
+        }
+        if(['gallery','message','surprise'].includes(id)){
+          showView(id);
+        }
+      }
+
+      document.querySelectorAll('[data-go]').forEach(btn=>{
+        btn.addEventListener('click',()=>go(btn.dataset.go));
+      });
+
+      document.querySelectorAll('[data-cardgo]').forEach(card=>{
+        card.addEventListener('click',()=>go(card.dataset.cardgo));
+      });
+
+      document.querySelectorAll('[data-home]').forEach(btn=>{
+        btn.addEventListener('click',()=>showView('home'));
+      });
+
+      function fireworks(){
+        const colors=['#ffffff','#ff3158','#ff8da3','#d00028','#ffd6de'];
+        const bursts=[
+          [innerWidth*.24,innerHeight*.30],
+          [innerWidth*.76,innerHeight*.28],
+          [innerWidth*.50,innerHeight*.16]
+        ];
+
+        bursts.forEach(([cx,cy],idx)=>{
+          setTimeout(()=>{
+            for(let i=0;i<34;i++){
+              const s=document.createElement('span');
+              s.className='spark';
+              const angle=(Math.PI*2*i/34)+(Math.random()*.08);
+              const dist=78+Math.random()*115;
+              s.style.left=cx+'px';
+              s.style.top=cy+'px';
+              s.style.background=colors[Math.floor(Math.random()*colors.length)];
+              s.style.boxShadow='0 0 10px '+s.style.background;
+              s.style.setProperty('--x',Math.cos(angle)*dist+'px');
+              s.style.setProperty('--y',Math.sin(angle)*dist+'px');
+              document.body.appendChild(s);
+              setTimeout(()=>s.remove(),980);
+            }
+          },idx*180);
+        });
+      }
+
+      document.querySelectorAll('.photo-card').forEach(card=>{
+        card.addEventListener('click',()=>{
+          galleryShell.classList.add('paused');
+          modalTitle.textContent=card.dataset.title || 'Our Memory';
+          modalMessage.textContent=card.dataset.message || '';
+          modal.classList.add('show');
+          fireworks();
+          closeModal.focus();
+        });
+      });
+
+      function close(){
+        modal.classList.remove('show');
+        galleryShell.classList.remove('paused');
+      }
+
+      closeModal.addEventListener('click',close);
+      modal.addEventListener('click',e=>{ if(e.target===modal) close(); });
+      document.addEventListener('keydown',e=>{
+        if(e.key==='Escape' && modal.classList.contains('show')) close();
+      });
+
+      if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+        let made=0;
+        const timer=setInterval(()=>{
+          if(made>26){ clearInterval(timer); return; }
+          const p=document.createElement('span');
+          p.className='petal';
+          p.textContent='❧';
+          p.style.left=(Math.random()*100)+'vw';
+          p.style.fontSize=(10+Math.random()*12)+'px';
+          p.style.animationDuration=(7+Math.random()*6)+'s';
+          p.style.animationDelay=(Math.random()*1.5)+'s';
+          document.body.appendChild(p);
+          made++;
+          setTimeout(()=>p.remove(),14500);
+        },520);
+      }
+
+      const envelopeWrap = document.getElementById('envelopeWrap');
+      const openEnvelopeBtn = document.getElementById('openEnvelopeBtn');
+      const afterLetter = document.getElementById('afterLetter');
+      const lastSurpriseBtn = document.getElementById('lastSurpriseBtn');
+      const finalPhotoReveal = document.getElementById('finalPhotoReveal');
+
+      function rosePetals(){
+        for(let i=0;i<22;i++){
+          setTimeout(()=>{
+            const p=document.createElement('span');
+            p.className='rose-petal';
+            p.textContent='🌹';
+            p.style.left=(Math.random()*100)+'vw';
+            p.style.fontSize=(13+Math.random()*12)+'px';
+            p.style.animationDuration=(6+Math.random()*5)+'s';
+            document.body.appendChild(p);
+            setTimeout(()=>p.remove(),12000);
+          },i*120);
+        }
+      }
+
+      if(openEnvelopeBtn){
+        openEnvelopeBtn.addEventListener('click',()=>{
+          envelopeWrap.classList.add('opened');
+          openEnvelopeBtn.disabled=true;
+          openEnvelopeBtn.textContent='For You ❤️';
+          fireworks();
+          rosePetals();
+
+          setTimeout(()=>{
+            afterLetter.classList.add('show');
+          },1250);
+        });
+      }
+
+      if(lastSurpriseBtn){
+        lastSurpriseBtn.addEventListener('click',()=>{
+          finalPhotoReveal.classList.add('show');
+          lastSurpriseBtn.disabled=true;
+          lastSurpriseBtn.textContent='A Memory to Keep ❤️';
+          fireworks();
+          rosePetals();
+          setTimeout(()=>{
+            finalPhotoReveal.scrollIntoView({behavior:'smooth',block:'center'});
+          },180);
+        });
+      }
+
+
+      const romanticTracks = [
+        {title:'A Thousand Years — Violin Cover', src:'assets/gallery_music.mp3'},
+        {title:'Can’t Help Falling In Love — Viola Cover', src:'assets/message_music.mp3'},
+        {title:'Forever Begins Here', src:'assets/forever_begins_here.mp3'},
+        {title:'Our Little Forever', src:'assets/our_little_forever.mp3'},
+        {title:'Your Love — Piano Cover', src:'assets/surprise_music.mp3'}
+      ];
+      let romanticTrackIndex = 0;
+      const romanticAudio = document.getElementById('romanticAudio');
+      const musicTitle = document.getElementById('musicTitle');
+      const playPause = document.getElementById('playPause');
+      const prevTrack = document.getElementById('prevTrack');
+      const nextTrack = document.getElementById('nextTrack');
+      const musicProgress = document.getElementById('musicProgress');
+
+      function loadRomanticTrack(i, autoPlay=false){
+        romanticTrackIndex = (i + romanticTracks.length) % romanticTracks.length;
+        romanticAudio.src = romanticTracks[romanticTrackIndex].src;
+        musicTitle.textContent = romanticTracks[romanticTrackIndex].title;
+        musicProgress.value = 0;
+        if(autoPlay){
+          romanticAudio.play().then(()=>playPause.textContent='⏸').catch(()=>{});
+        }
+      }
+
+      playPause.addEventListener('click',()=>{
+        if(romanticAudio.paused){
+          romanticAudio.play().then(()=>playPause.textContent='⏸').catch(()=>{});
+        }else{
+          romanticAudio.pause();
+          playPause.textContent='▶';
+        }
+      });
+
+      prevTrack.addEventListener('click',()=>loadRomanticTrack(romanticTrackIndex-1,true));
+      nextTrack.addEventListener('click',()=>loadRomanticTrack(romanticTrackIndex+1,true));
+
+      romanticAudio.addEventListener('timeupdate',()=>{
+        if(romanticAudio.duration){
+          musicProgress.value = romanticAudio.currentTime / romanticAudio.duration * 100;
+        }
+      });
+
+      musicProgress.addEventListener('input',()=>{
+        if(romanticAudio.duration){
+          romanticAudio.currentTime = musicProgress.value / 100 * romanticAudio.duration;
+        }
+      });
+
+      romanticAudio.addEventListener('ended',()=>loadRomanticTrack(romanticTrackIndex+1,true));
+      loadRomanticTrack(0,false);
+      function playPageMusic(pageName){
+        if(pageName==='gallery'){
+          loadRomanticTrack(0,true);
+        }else if(pageName==='message'){
+          loadRomanticTrack(1,true);
+        }
+      }
+      document.querySelectorAll('[data-go="gallery"]').forEach(btn=>{
+        btn.addEventListener('click',()=>playPageMusic('gallery'));
+      });
+      document.querySelectorAll('[data-cardgo="gallery"]').forEach(btn=>{
+        btn.addEventListener('click',()=>playPageMusic('gallery'));
+      });
+      document.querySelectorAll('[data-go="message"]').forEach(btn=>{
+        btn.addEventListener('click',()=>playPageMusic('message'));
+      });
+      document.querySelectorAll('[data-cardgo="message"]').forEach(btn=>{
+        btn.addEventListener('click',()=>playPageMusic('message'));
+      });
+
+
+      document.querySelectorAll('[data-view="gallery"]').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+          if(romanticAudio && romanticAudio.paused){
+            romanticAudio.play().then(()=>playPause.textContent='⏸').catch(()=>{});
+          }
+        });
+      });
+
+
+      const surpriseOpenBtn = document.getElementById('openEnvelopeBtn');
+      if(surpriseOpenBtn){
+        surpriseOpenBtn.addEventListener('click',()=>{
+          if(romanticAudio.paused){
+            romanticAudio.play().then(()=>playPause.textContent='⏸').catch(()=>{});
+          }
+        }, {once:true});
+      }
+    
+
+      function playSurpriseMusic(){
+        const idx = romanticTracks.findIndex(t => t.src.includes('surprise_music.mp3'));
+        if(idx >= 0) loadRomanticTrack(idx, true);
+      }
+
+      document.querySelectorAll('[data-go="surprise"], [data-cardgo="surprise"]').forEach(btn=>{
+        btn.addEventListener('click', playSurpriseMusic);
+      });
+
+      const openSurpriseEnvelope = document.getElementById('openEnvelopeBtn');
+      if(openSurpriseEnvelope){
+        openSurpriseEnvelope.addEventListener('click', playSurpriseMusic);
+      }
+
+      const oneLastSurpriseButton = document.getElementById('lastSurpriseBtn');
+      if(oneLastSurpriseButton){
+        oneLastSurpriseButton.addEventListener('click', playSurpriseMusic);
+      }
+
+    })();
+  </script>
+
+    <div class="music-player" id="musicPlayer">
+      <div class="music-meta">
+        <strong id="musicTitle">A Thousand Years — Violin Cover</strong>
+        <span>Romantic music for our monthsary</span>
+      </div>
+      <button class="music-btn" id="prevTrack" type="button" aria-label="Previous">⏮</button>
+      <button class="music-btn" id="playPause" type="button" aria-label="Play">▶</button>
+      <button class="music-btn" id="nextTrack" type="button" aria-label="Next">⏭</button>
+      <input class="music-progress" id="musicProgress" type="range" min="0" max="100" value="0">
+      <audio id="romanticAudio" preload="metadata"></audio>
+    </div>
+    
+</body>
+</html>
