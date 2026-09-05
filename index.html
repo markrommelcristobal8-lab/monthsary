@@ -968,6 +968,44 @@
 .letter-ending{text-align:center;color:#720016;font-family:Georgia,serif;font-size:24px;margin-top:28px}
 @media(max-width:600px){.full-monthsary-letter{padding:32px 22px}.full-monthsary-letter h2{font-size:27px}.monthsary-paragraph{font-size:14px;line-height:1.8}}
 
+
+    .music-player{
+      pointer-events:auto !important;
+      z-index:99999 !important;
+    }
+    .music-player button,
+    .music-player input{
+      pointer-events:auto !important;
+      position:relative;
+      z-index:100000;
+    }
+    .music-btn{
+      min-width:42px;
+      min-height:42px;
+      touch-action:manipulation;
+    }
+
+    .video-sound-btn{
+      position:absolute;
+      top:18px;
+      right:18px;
+      z-index:5;
+      border:1px solid rgba(255,255,255,.28);
+      background:rgba(67,20,13,.78);
+      color:#fff7e7;
+      padding:11px 14px;
+      border-radius:14px;
+      font-weight:800;
+      cursor:pointer;
+      backdrop-filter:blur(8px);
+      box-shadow:0 8px 22px rgba(0,0,0,.22);
+      pointer-events:auto;
+    }
+    .video-sound-btn:hover{background:rgba(91,0,18,.88)}
+    @media(max-width:600px){
+      .video-sound-btn{top:12px;right:12px;padding:10px 12px;font-size:12px}
+    }
+
 </style>
 </head>
 <body>
@@ -1006,9 +1044,12 @@
         </div>
 
         <div class="hero-visual">
-          <video class="hero-video" autoplay muted loop playsinline preload="metadata">
+          <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="metadata">
             <source src="one_month_of_us.mp4" type="video/mp4">
           </video>
+          <button type="button" class="video-sound-btn" id="videoSoundBtn" aria-label="Play video sound">
+            🔊 Play Video Sound
+          </button>
           <div class="hero-caption">
             <div>
               <strong>One Month of Us</strong>
@@ -1264,6 +1305,18 @@
     </div>
   </div>
 
+  <div class="music-player" id="musicPlayer">
+      <div class="music-meta">
+        <strong id="musicTitle">A Thousand Years — Violin Cover</strong>
+        <span>Romantic music for our monthsary</span>
+      </div>
+      <button class="music-btn" id="prevTrack" type="button" aria-label="Previous">⏮</button>
+      <button class="music-btn" id="playPause" type="button" aria-label="Play">▶</button>
+      <button class="music-btn" id="nextTrack" type="button" aria-label="Next">⏭</button>
+      <input class="music-progress" id="musicProgress" type="range" min="0" max="100" value="0">
+      <audio id="romanticAudio" preload="metadata"></audio>
+    </div>
+
   <script>
     (function(){
       const galleryShell = document.getElementById('galleryShell');
@@ -1430,6 +1483,7 @@
         {title:'Our Little Forever', src:'our_little_forever.mp3'},
         {title:'Your Love — Piano Cover', src:'surprise_music.mp3'}
       ];
+
       let romanticTrackIndex = 0;
       const romanticAudio = document.getElementById('romanticAudio');
       const musicTitle = document.getElementById('musicTitle');
@@ -1438,115 +1492,125 @@
       const nextTrack = document.getElementById('nextTrack');
       const musicProgress = document.getElementById('musicProgress');
 
-      function loadRomanticTrack(i, autoPlay=false){
-        romanticTrackIndex = (i + romanticTracks.length) % romanticTracks.length;
-        romanticAudio.src = romanticTracks[romanticTrackIndex].src;
-        musicTitle.textContent = romanticTracks[romanticTrackIndex].title;
+      function setTrack(index, autoPlay=false){
+        romanticTrackIndex = (index + romanticTracks.length) % romanticTracks.length;
+        const track = romanticTracks[romanticTrackIndex];
+
+        romanticAudio.pause();
+        romanticAudio.src = track.src;
+        romanticAudio.load();
+
+        musicTitle.textContent = track.title;
         musicProgress.value = 0;
+        playPause.textContent = '▶';
+
         if(autoPlay){
-          romanticAudio.play().then(()=>playPause.textContent='⏸').catch(()=>{});
+          romanticAudio.play()
+            .then(()=>{ playPause.textContent='⏸'; })
+            .catch(()=>{ playPause.textContent='▶'; });
         }
       }
 
-      playPause.addEventListener('click',()=>{
-        if(romanticAudio.paused){
-          romanticAudio.play().then(()=>playPause.textContent='⏸').catch(()=>{});
-        }else{
-          romanticAudio.pause();
+      playPause.addEventListener('click', async ()=>{
+        try{
+          if(romanticAudio.paused){
+            await romanticAudio.play();
+            playPause.textContent='⏸';
+          }else{
+            romanticAudio.pause();
+            playPause.textContent='▶';
+          }
+        }catch(err){
           playPause.textContent='▶';
+          musicTitle.textContent='Tap play again to start music';
         }
       });
 
-      prevTrack.addEventListener('click',()=>loadRomanticTrack(romanticTrackIndex-1,true));
-      nextTrack.addEventListener('click',()=>loadRomanticTrack(romanticTrackIndex+1,true));
+      prevTrack.addEventListener('click',()=>setTrack(romanticTrackIndex-1,true));
+      nextTrack.addEventListener('click',()=>setTrack(romanticTrackIndex+1,true));
 
       romanticAudio.addEventListener('timeupdate',()=>{
-        if(romanticAudio.duration){
-          musicProgress.value = romanticAudio.currentTime / romanticAudio.duration * 100;
+        if(Number.isFinite(romanticAudio.duration) && romanticAudio.duration > 0){
+          musicProgress.value = (romanticAudio.currentTime / romanticAudio.duration) * 100;
         }
       });
 
       musicProgress.addEventListener('input',()=>{
-        if(romanticAudio.duration){
-          romanticAudio.currentTime = musicProgress.value / 100 * romanticAudio.duration;
+        if(Number.isFinite(romanticAudio.duration) && romanticAudio.duration > 0){
+          romanticAudio.currentTime = (Number(musicProgress.value)/100) * romanticAudio.duration;
         }
       });
 
-      romanticAudio.addEventListener('ended',()=>loadRomanticTrack(romanticTrackIndex+1,true));
-      loadRomanticTrack(0,false);
-      function playPageMusic(pageName){
-        if(pageName==='gallery'){
-          loadRomanticTrack(0,true);
-        }else if(pageName==='message'){
-          loadRomanticTrack(1,true);
-        }
+      romanticAudio.addEventListener('ended',()=>setTrack(romanticTrackIndex+1,true));
+
+      romanticAudio.addEventListener('error',()=>{
+        playPause.textContent='▶';
+        musicTitle.textContent='Music file could not load';
+      });
+
+      function playSectionMusic(section){
+        if(section==='gallery') setTrack(0,true);
+        if(section==='message') setTrack(1,true);
+        if(section==='surprise') setTrack(4,true);
       }
-      document.querySelectorAll('[data-go="gallery"]').forEach(btn=>{
-        btn.addEventListener('click',()=>playPageMusic('gallery'));
-      });
-      document.querySelectorAll('[data-cardgo="gallery"]').forEach(btn=>{
-        btn.addEventListener('click',()=>playPageMusic('gallery'));
-      });
-      document.querySelectorAll('[data-go="message"]').forEach(btn=>{
-        btn.addEventListener('click',()=>playPageMusic('message'));
-      });
-      document.querySelectorAll('[data-cardgo="message"]').forEach(btn=>{
-        btn.addEventListener('click',()=>playPageMusic('message'));
+
+      document.querySelectorAll('[data-go="gallery"], [data-cardgo="gallery"]').forEach(btn=>{
+        btn.addEventListener('click',()=>playSectionMusic('gallery'));
       });
 
-
-      document.querySelectorAll('[data-view="gallery"]').forEach(btn=>{
-        btn.addEventListener('click',()=>{
-          if(romanticAudio && romanticAudio.paused){
-            romanticAudio.play().then(()=>playPause.textContent='⏸').catch(()=>{});
-          }
-        });
+      document.querySelectorAll('[data-go="message"], [data-cardgo="message"]').forEach(btn=>{
+        btn.addEventListener('click',()=>playSectionMusic('message'));
       });
-
-
-      const surpriseOpenBtn = document.getElementById('openEnvelopeBtn');
-      if(surpriseOpenBtn){
-        surpriseOpenBtn.addEventListener('click',()=>{
-          if(romanticAudio.paused){
-            romanticAudio.play().then(()=>playPause.textContent='⏸').catch(()=>{});
-          }
-        }, {once:true});
-      }
-    
-
-      function playSurpriseMusic(){
-        const idx = romanticTracks.findIndex(t => t.src.includes('surprise_music.mp3'));
-        if(idx >= 0) loadRomanticTrack(idx, true);
-      }
 
       document.querySelectorAll('[data-go="surprise"], [data-cardgo="surprise"]').forEach(btn=>{
-        btn.addEventListener('click', playSurpriseMusic);
+        btn.addEventListener('click',()=>playSectionMusic('surprise'));
       });
 
       const openSurpriseEnvelope = document.getElementById('openEnvelopeBtn');
       if(openSurpriseEnvelope){
-        openSurpriseEnvelope.addEventListener('click', playSurpriseMusic);
+        openSurpriseEnvelope.addEventListener('click',()=>playSectionMusic('surprise'));
       }
 
       const oneLastSurpriseButton = document.getElementById('lastSurpriseBtn');
       if(oneLastSurpriseButton){
-        oneLastSurpriseButton.addEventListener('click', playSurpriseMusic);
+        oneLastSurpriseButton.addEventListener('click',()=>playSectionMusic('surprise'));
+      }
+
+      setTrack(0,false);
+
+      // Video sound control
+      const heroVideo = document.getElementById('heroVideo');
+      const videoSoundBtn = document.getElementById('videoSoundBtn');
+
+      if(heroVideo && videoSoundBtn){
+        heroVideo.muted = true;
+        heroVideo.play().catch(()=>{});
+
+        videoSoundBtn.addEventListener('click', async ()=>{
+          try{
+            if(heroVideo.muted){
+              if(!romanticAudio.paused){
+                romanticAudio.pause();
+                playPause.textContent='▶';
+              }
+
+              heroVideo.muted = false;
+              heroVideo.volume = 1;
+              await heroVideo.play();
+
+              videoSoundBtn.textContent='🔇 Mute Video';
+            }else{
+              heroVideo.muted = true;
+              videoSoundBtn.textContent='🔊 Play Video Sound';
+            }
+          }catch(err){
+            heroVideo.muted = true;
+            videoSoundBtn.textContent='Tap again for sound';
+          }
+        });
       }
 
     })();
   </script>
-
-    <div class="music-player" id="musicPlayer">
-      <div class="music-meta">
-        <strong id="musicTitle">A Thousand Years — Violin Cover</strong>
-        <span>Romantic music for our monthsary</span>
-      </div>
-      <button class="music-btn" id="prevTrack" type="button" aria-label="Previous">⏮</button>
-      <button class="music-btn" id="playPause" type="button" aria-label="Play">▶</button>
-      <button class="music-btn" id="nextTrack" type="button" aria-label="Next">⏭</button>
-      <input class="music-progress" id="musicProgress" type="range" min="0" max="100" value="0">
-      <audio id="romanticAudio" preload="metadata"></audio>
-    </div>
-    
 </body>
 </html>
